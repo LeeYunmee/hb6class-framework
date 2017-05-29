@@ -6,11 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.hb.day003.support.UpdateJDBC;
-import com.hb.day003.support.UpdateJDBC2;
+import com.hb.day003.support.RowMapper;
+import com.hb.day003.support.TemplateJDBC;
 
 public class SimpleDAO {
 	private Connection conn;
@@ -35,8 +34,8 @@ public class SimpleDAO {
 	public List<SimpleVO> selectAll() throws SQLException {
 		String sql = "SELECT * FROM SIMPLE02";
 		
-		UpdateJDBC2 jdbc = new UpdateJDBC2() {
-			
+		TemplateJDBC jdbc = new TemplateJDBC();
+		return (List<SimpleVO>) jdbc.executeQuery(sql, new RowMapper(){
 			@Override
 			public Object mapRow(ResultSet rs) throws SQLException {
 				List<SimpleVO> list = new ArrayList();
@@ -50,18 +49,18 @@ public class SimpleDAO {
 				}
 				return list;
 			}
-		};
-		return (List<SimpleVO>) jdbc.executeQuery(sql);
+			
+		});
+		
 	}
 	
 	public SimpleVO selectOne(int sabun) throws SQLException {
 		String sql = "select * from simple02 where sabun=?";
 		
-		UpdateJDBC2 jdbc = new UpdateJDBC2() {
-			
+		TemplateJDBC jdbc = new TemplateJDBC();
+		return (SimpleVO) jdbc.executeQuery(sql, new Object[]{sabun},new RowMapper(){
 			@Override
 			public Object mapRow(ResultSet rs) throws SQLException {
-
 				SimpleVO bean = new SimpleVO();
 				
 				if(rs.next()){
@@ -73,9 +72,9 @@ public class SimpleDAO {
 				
 				return bean;
 			}
-		};
+			
+		});
 		
-		return (SimpleVO) jdbc.executeQuery(sql, new Object[]{sabun});
 	}
 
 
@@ -93,7 +92,7 @@ public class SimpleDAO {
 //		
 //		return result;
 		Object[] objs = new Object[]{name,nalja,pay};
-		UpdateJDBC jdbc = new UpdateJDBC();
+		TemplateJDBC jdbc = new TemplateJDBC();
 		return jdbc.executeUpdate(sql,objs);
 		
 	}
@@ -115,7 +114,7 @@ public class SimpleDAO {
 //		close();
 //		return result;
 		Object[] objs = new Object[]{name,nalja,pay,sabun};
-		UpdateJDBC jdbc = new UpdateJDBC();
+		TemplateJDBC jdbc = new TemplateJDBC();
 		return jdbc.executeUpdate(sql,objs);
 	}
 	
