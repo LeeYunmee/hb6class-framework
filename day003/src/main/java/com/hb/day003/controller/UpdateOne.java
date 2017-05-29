@@ -25,16 +25,21 @@ public class UpdateOne implements MyController {
 		int sabun = Integer.parseInt(req.getParameter("sabun"));
 		int pay = Integer.parseInt(req.getParameter("pay"));
 		
+		System.out.println("¼öÁ¤ : " + sabun + ":" + name + ":" + nalja + ":" + pay);
+		
 		SimpleDAO dao = new SimpleDAO();
 		int result = 0;
 		
 		try {
 			result = dao.updateOne(sabun, name, nalja, pay);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		if(result>0){
-			return "rediect:edit.do?idx="+sabun;
+			System.out.println("result : " + result);
+			return "redirect:edit.do?idx="+sabun;
 		}else{
 			return "redirect:list.do";
 		}

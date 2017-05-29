@@ -35,10 +35,9 @@ public class SimpleDAO {
 		String sql = "SELECT * FROM SIMPLE02";
 		
 		TemplateJDBC jdbc = new TemplateJDBC();
-		return (List<SimpleVO>) jdbc.executeQuery(sql, new RowMapper(){
+		return (List<SimpleVO>) jdbc.QueryList(sql, new RowMapper(){
 			@Override
 			public Object mapRow(ResultSet rs) throws SQLException {
-				List<SimpleVO> list = new ArrayList();
 				while(rs.next()){
 					SimpleVO bean = new SimpleVO();
 					bean.setSabun(rs.getInt("sabun"));

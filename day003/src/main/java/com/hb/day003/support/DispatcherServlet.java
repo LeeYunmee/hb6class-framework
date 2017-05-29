@@ -58,6 +58,8 @@ public class DispatcherServlet extends HttpServlet{
 		MyController controller = HandlerMapping.mapping(uri);
 		String path = controller.execute(req,  res);
 		
+		System.out.println(uri);
+		
 		//view
 		if(path.startsWith("redirect:")){
 			path = path.replace("redirect:", "");

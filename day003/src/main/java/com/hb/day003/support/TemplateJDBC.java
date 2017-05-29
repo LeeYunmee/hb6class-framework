@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class TemplateJDBC {
 
@@ -44,7 +45,26 @@ public class TemplateJDBC {
 		return obj;
 	}
 	
-public int executeUpdate(String sql , Object[] objs) throws SQLException {
+	public List QueryList(String sql, RowMapper mapper) throws SQLException{
+		return QueryList(sql, new Object[]{}, mapper);
+	}
+	public List QueryList(String sql, Object[] objs, RowMapper mapper) throws SQLException{
+	
+		List list = RowMapper.list;
+		pstmt = conn.prepareStatement(sql);
+		
+		for (int i =0; i<objs.length; i++){
+			pstmt.setObject(i+1, objs[i]);
+		}
+		
+		rs = pstmt.executeQuery();
+		Object obj = mapper.mapRow(rs);
+		close();
+		
+		return list;
+	}
+	
+	public int executeUpdate(String sql , Object[] objs) throws SQLException {
 		
 		pstmt=conn.prepareStatement(sql);
 		
