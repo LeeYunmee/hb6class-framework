@@ -1,0 +1,14 @@
+<style type="text/css">
+	#table{
+	width: 80%;
+	border: 1px solid blue;
+	margin: opx auto;;
+	}
+	#table div{
+	border-bottom: 1px solid blue;
+	}
+	#table div> spon{
+	display: inline-block;;
+	width: 24%;
+	}
+</style>
