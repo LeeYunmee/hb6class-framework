@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="hello" extends="struts-default">
+	<action name="index" class="com.hb.controller.IndexAction">
+		<result>/index.jsp</result>
+	</action>
+		<action name="step01" class="com.hb.controller.HelloWorld">
+			<result name="success">/hello.jsp</result>
+			<result name="failurs">/err.jsp</result>
+		</action>
+ 		<action name="step05" class="com.hb.action.Ex03">
+			<result name="success">/hello2/ex04.jsp</result>
+		</action>
+		<action name="step06" class="com.hb.action.Ex04">
+			<result name="success">/hello2/ex05.jsp</result>
+		</action>
+	</package>
+	<package name="hello2" namespace="/tutorial" extends="hello">
+		<action name="step02" class="com.hb.action.Ex01">
+			<result>/hello2/ex01.jsp</result>
+		</action>
+	</package>
+	<package name="hello3" extends="hello2">
+		<action name="step03" class="com.hb.action.Ex01" method="hello">
+			<result>/hello2/ex02.jsp</result>
+		</action>
+	</package>
+	
+	<include file="newstruts.xml"></include> 
+</struts>
