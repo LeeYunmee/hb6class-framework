@@ -39,7 +39,7 @@ public class UpdateOne implements MyController {
 		
 		if(result>0){
 			System.out.println("result : " + result);
-			return "redirect:edit.do?idx="+sabun;
+			return "redirect:list.do";
 		}else{
 			return "redirect:list.do";
 		}

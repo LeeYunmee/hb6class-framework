@@ -17,8 +17,5 @@ public class AddForm implements MyController {
 		
 		return "form";
 	}
-
-	
-	
 	
 }

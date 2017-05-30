@@ -54,18 +54,22 @@ public class DispatcherServlet extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		// controller
-		String uri = req.getRequestURI();
-		MyController controller = HandlerMapping.mapping(uri);
-		String path = controller.execute(req,  res);
+		String uri = req.getRequestURI(); //이동해야할 경로
+		MyController controller = HandlerMapping.mapping(uri); //해당 controller 를 반환
+		String path = controller.execute(req,  res); // 해당 controller 를 실행
 		
-		System.out.println(uri);
+		System.out.println("URI : " + uri);
+		System.out.println("URL : " + req.getRequestURL());
 		
 		//view
+		// 1. do로 이동
 		if(path.startsWith("redirect:")){
 			path = path.replace("redirect:", "");
 			res.sendRedirect(path);
 			return;
 		}
+		
+		// 2. jsp로 이동
 		String prifix="/WEB-INF/page/";
 		String sufix=".jsp";
 		req.getRequestDispatcher(prifix+path+sufix).forward(req, res);

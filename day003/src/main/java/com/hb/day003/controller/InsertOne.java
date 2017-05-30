@@ -20,17 +20,23 @@ public class InsertOne implements MyController {
 		SimpleDAO dao = new SimpleDAO();
 		
 		try{
-		String name = req.getParameter("name");
-		String nalja = req.getParameter("nalja");
-		int pay = Integer.parseInt(req.getParameter("pay"));
-		
-		int result = dao.insertOne(name,nalja,pay);
-		if(result>0){
-			return "redirect:list.do";
-		}else{
-			return "form";
-		}
+			String name = req.getParameter("name");
+			String nalja = req.getParameter("nalja");
+			int pay = Integer.parseInt(req.getParameter("pay"));
+			
+			int result = dao.insertOne(name,nalja,pay);
+			
+			if(result > 0){
+				return "redirect:list.do";
+			}else{
+				req.setAttribute("title", "입력");
+				req.setAttribute("nxtURI", "insert.do");
+				return "form";
+			}
 		}catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("title", "입력");
+			req.setAttribute("nxtURI", "insert.do");
 			return "form";
 		}
 	}
