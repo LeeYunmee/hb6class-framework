@@ -7,5 +7,28 @@
     		<action name="list" class="com.hb.action.SelectAll">
     			<result>/WEB-INF/page/list.jsp</result>
     		</action>
+    		<action name="detail" class="com.hb.action.SelectOne">
+    			<result>/WEB-INF/page/detail.jsp</result>
+    		</action>
+    		<action name="add" class="com.hb.action.AddForm">
+    			<result>/WEB-INF/page/add.jsp</result>
+    		</action>
+    		<action name="insert" class="com.hb.action.InsertOne">
+    			<result type="chain" name="success">list</result>
+    			<result name="input" >/WEB-INF/page/add.jsp</result>
+    			<result name="error" >/err.jsp</result>
+    		</action>
+    		<action name="edit" class="com.hb.action.SelectOne">
+    			<result>/WEB-INF/page/edit.jsp</result>
+    			<result name="error" >/err.jsp</result>
+    		</action>
+    		<action name="update" class="com.hb.action.UpdateOne">
+    			<result type="chain">detail
+    		<!-- 		<param name="sabun">??</param> -->
+    			</result>
+    		</action>
+    		<action name="delete" class="com.hb.action.DeleteOne">
+    			<result type="chain">list</result>
+    		</action>
     	</package>
     </struts>

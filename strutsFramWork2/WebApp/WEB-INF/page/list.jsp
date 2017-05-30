@@ -20,11 +20,12 @@
 		<c:forEach items="${alist }" var="bin">
 			<tr>
 				<td>${bin.sabun }</td>
-				<td>${bin.name }</td>
+				<td><a href="detail.action?sabun=${bin.sabun }">${bin.name }</a></td>
 				<td>${bin.nalja }</td>
 				<td>${bin.pay }</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="add.action">입력</a>
 </body>
 </html>

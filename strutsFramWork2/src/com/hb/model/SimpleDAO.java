@@ -37,15 +37,52 @@ public class SimpleDAO {
 		} finally{
 			closeAll();
 		}
-		
 		return list;
 	}
 
+	public Map<String, Object> selectOne(int sabun) throws SQLException{
+		
+		String sql ="select * from simple02 where sabun=?";
+		Map<String, Object> map = new HashMap<>();
+		conn=MyOracle.getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, sabun);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				map.put("sabun",  rs.getInt("sabun"));
+				map.put("name",  rs.getString("name"));
+				map.put("nalja",  rs.getString("nalja"));
+				map.put("pay",  rs.getInt("pay"));
+			}	
+		} finally{
+			closeAll();
+		}
+		return map;	
+	}
+	
 	public void closeAll() throws SQLException {
 		if (rs != null) rs.close();
 		if (pstmt != null) pstmt.close();
 		if (conn != null) conn.close();
 		
 	}
-	
+
+	public int insertOne(String name, String nalja, int pay) throws SQLException {
+		String sql = "insert into simple02 (name, nalja,pay) ";
+		sql+= "values (?,?,?)";
+		
+		try{
+			conn=MyOracle.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, nalja);
+			pstmt.setInt(3, pay);
+			return pstmt.executeUpdate();
+			
+		}finally{
+			closeAll();
+		}
+	}	
 }
