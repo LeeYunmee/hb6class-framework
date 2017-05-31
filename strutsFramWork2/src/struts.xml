@@ -23,12 +23,14 @@
     			<result name="error" >/err.jsp</result>
     		</action>
     		<action name="update" class="com.hb.action.UpdateOne">
-    			<result type="chain">detail
+    			<result type="chain" name="success">list
     		<!-- 		<param name="sabun">??</param> -->
     			</result>
+    			<result name="error" >/err.jsp</result>
     		</action>
     		<action name="delete" class="com.hb.action.DeleteOne">
-    			<result type="chain">list</result>
+    			<result name="success" type="chain">list</result>
+    			<result name="error" >/err.jsp</result>
     		</action>
     	</package>
     </struts>

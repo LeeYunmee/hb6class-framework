@@ -37,7 +37,7 @@ public class InsertOne extends ActionSupport {
 /*		return this.SUCCESS; // 성공했을 때
 		return this.NONE; // 컨트롤러만 동작시킬 때
 		return this.ERROR; 
-		return this.INPUT; //재입력을 받을 때
+		return this.INPUT; //재입력s을 받을 때
 		return this.LOGIN; //INPUT과 동일
 */		else
 			return this.ERROR;
