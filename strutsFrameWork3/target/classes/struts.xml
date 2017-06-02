@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+    <struts>
+    <package name="default" extends="struts-default">
+    	<action name="index" class="com.hb.struts.action.IndexAction">
+    		<result>/index.jsp</result>
+    	</action>
+    	<action name="list" class="com.hb.struts.action.ListAction">
+    		<result name="success">/list.jsp</result>
+    	</action>
+    	<action name="add" >
+    		<result name="success">/add.jsp</result>
+    	</action>
+    	<action name="insert" class="com.hb.struts.action.InsertOneAction">
+    		<interceptor-ref name="params"></interceptor-ref>
+    		<result name="success" type="redirect">/step02/list.action</result>
+    		<result name="input">/add.jsp</result>
+    	</action>
+    	<action name="insert3" class="com.hb.struts.action.InsertOneAction3">
+    		<interceptor-ref name="prepare"></interceptor-ref>
+    		<interceptor-ref name="modelDriven"></interceptor-ref>
+    		<interceptor-ref name="params"></interceptor-ref>
+    		<result name="success" type="redirect">/step02/list.action</result>
+    		<result name="input">/add.jsp</result>
+    	</action>
+    	<action name="detail" class="com.hb.struts.action.DetailAction">
+    		<interceptor-ref name="params" />
+    		<result name="success">/detail.jsp</result>
+    	</action>
+    	<action name="edit" class="com.hb.struts.action.DetailAction">
+    		<interceptor-ref name="params" />
+    		<result name="success">/edit.jsp</result>
+    	</action>
+    	<action name="update" class="com.hb.struts.action.UpdateAction2">
+    		<interceptor-ref name="params" />
+    		<interceptor-ref name="validation" />
+    		<interceptor-ref name="workflow" />
+    		<result name="input" type="redirect">
+    			<param name="location">/step02/edit.action</param>
+    			<param name="sabun">${bean.sabun}</param>
+    		</result>
+    		<result name="success" type="redirectAction">list</result>
+    	</action>
+    </package>
+    
+    </struts>
