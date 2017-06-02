@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- controller-url Mapping -->
+	<!-- 1.HandlerMapping 클래스 설정 -->
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+	
+	<!-- 2.controller 클래스 설정 -->
+	<bean name="/index.do" class="com.hb.sts.day01.controller.IndexController"></bean>
+	<bean name="/list.do" class="com.hb.sts.day01.controller.ListController"></bean>
+	<bean name="/add.do" class="com.hb.sts.day01.controller.AddController"></bean>
+	<bean name="/insert.do" class="com.hb.sts.day01.controller.InsertController"></bean>
+	<bean name="/detail.do" class="com.hb.sts.day01.controller.DetailController"></bean>
+	<bean name="/edit.do" class="com.hb.sts.day01.controller.DetailController"></bean>
+	<bean name="/update.do" class="com.hb.sts.day01.controller.UpdateController"></bean>
+	<bean name="/delete.do" class="com.hb.sts.day01.controller.DeleteController"></bean>
+	
+	<!-- view -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>
